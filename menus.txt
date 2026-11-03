@@ -1,0 +1,47 @@
+#if PART == 1
+static const char *const mm1[] = { "Vertex+Point>Parabola", "Transformations", "Standard>Vertex Form", "Parabola Features", "Discriminant", "Projectile Maximum" };
+void app_main(void)
+{
+    U8 s, f;
+    static const U8 map1[] = { 0, 1, 4, 6, 20, 22 };
+    for (;;) {
+        s = menu("QUAD SOLVER 1", mm1, 6);
+        if (s == 255) return;
+        if (s == 3) { f = menu("ENTER FUNCTION AS", formmenu, 3); if (f != 255) run(6 + f); }
+        else run(map1[s]);
+    }
+}
+#elif PART == 2
+void app_main(void)
+{
+    U8 f;
+    for (;;) {
+        f = menu("COMPLEX NUMBERS", cxmenu, 7);
+        if (f == 255) return;
+        run(13 + f);
+    }
+}
+#elif PART == 3
+static const char *const mm3[] = { "Solve by Factoring", "Quadratic Formula", "Factor Quadratic" };
+void app_main(void)
+{
+    U8 s;
+    static const U8 map3[] = { 2, 5, 9 };
+    for (;;) {
+        s = menu("QUAD SOLVER 3", mm3, 3);
+        if (s == 255) return;
+        run(map3[s]);
+    }
+}
+#elif PART == 4
+static const char *const mm4[] = { "Solve by Sq Roots", "Find Zeros", "Find b: 1 Solution" };
+void app_main(void)
+{
+    U8 s, f;
+    for (;;) {
+        s = menu("QUAD SOLVER 4", mm4, 3);
+        if (s == 255) return;
+        if (s == 1) { f = menu("ENTER FUNCTION AS", formmenu, 3); if (f != 255) run(10 + f); }
+        else run(s ? 21 : 3);
+    }
+}

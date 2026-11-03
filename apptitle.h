@@ -1,0 +1,1 @@
+#define APPTITLE "QUAD FORMULA"

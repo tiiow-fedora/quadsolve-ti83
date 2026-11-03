@@ -1,0 +1,934 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 4.2.0 #13081 (Linux)
+;--------------------------------------------------------
+	.module hello
+	.optsdcc -mz80
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _main
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+;--------------------------------------------------------
+; ram data
+;--------------------------------------------------------
+	.area _DATA
+;--------------------------------------------------------
+; ram data
+;--------------------------------------------------------
+	.area _INITIALIZED
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area _DABS (ABS)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area _HOME
+	.area _GSINIT
+	.area _GSFINAL
+	.area _GSINIT
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area _HOME
+	.area _HOME
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area _CODE
+;hello.c:7: static void present(void) __naked
+;	---------------------------------
+; Function present
+; ---------------------------------
+_present:
+;hello.c:16: __endasm;
+	push	ix
+	ld	iy,#0x89F0
+	call	#0x4092
+	ld	iy,#0x89F0
+	pop	ix
+	ret
+;hello.c:17: }
+;hello.c:19: static U8 getcsc(void) __naked
+;	---------------------------------
+; Function getcsc
+; ---------------------------------
+_getcsc:
+;hello.c:31: __endasm;
+	push	ix
+	ei
+	halt
+	ld	iy,#0x89F0
+	rst	#0x28
+	.dw	#0x4018
+	pop	ix
+	ld	l,a
+	ret
+;hello.c:32: }
+;hello.c:44: static void memset_(void){ U8 *p=GBUF; unsigned i; for(i=0;i<768;i++) p[i]=0; }
+;	---------------------------------
+; Function memset_
+; ---------------------------------
+_memset_:
+	ld	bc, #0x0000
+00102$:
+	ld	hl, #0x9340
+	add	hl, bc
+	ld	(hl), #0x00
+	inc	bc
+	ld	a, b
+	sub	a, #0x03
+	jr	C, 00102$
+	ret
+_font:
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x05	; 5
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x06	; 6
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x06	; 6
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x06	; 6
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x07	; 7
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x03	; 3
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x07	; 7
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x01	; 1
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x03	; 3
+	.db #0x01	; 1
+	.db #0x03	; 3
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x04	; 4
+	.db #0x03	; 3
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x03	; 3
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x03	; 3
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x06	; 6
+	.db #0x05	; 5
+	.db #0x06	; 6
+	.db #0x04	; 4
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x04	; 4
+	.db #0x00	; 0
+	.db #0x03	; 3
+	.db #0x06	; 6
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x02	; 2
+	.db #0x01	; 1
+	.db #0x00	; 0
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x00	; 0
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x05	; 5
+	.db #0x07	; 7
+	.db #0x07	; 7
+	.db #0x05	; 5
+	.db #0x00	; 0
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x03	; 3
+	.db #0x01	; 1
+	.db #0x06	; 6
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x02	; 2
+	.db #0x00	; 0
+	.db #0x07	; 7
+	.db #0x06	; 6
+	.db #0x02	; 2
+	.db #0x07	; 7
+	.db #0x00	; 0
+	.db #0x00	; 0
+	.db #0x01	; 1
+	.db #0x01	; 1
+	.db #0x05	; 5
+	.db #0x05	; 5
+	.db #0x02	; 2
+	.db #0x04	; 4
+	.db #0x06	; 6
+	.db #0x07	; 7
+	.db #0x06	; 6
+	.db #0x04	; 4
+;hello.c:45: static U8 key(void)
+;	---------------------------------
+; Function key
+; ---------------------------------
+_key:
+;hello.c:48: do k = getcsc(); while (!k);
+00101$:
+	call	_getcsc
+;hello.c:49: return k;
+	or	a,a
+	jr	Z, 00101$
+;hello.c:50: }
+	ret
+;hello.c:52: static void putg(U8 c, U8 r, U8 ch, U8 inv)
+;	---------------------------------
+; Function putg
+; ---------------------------------
+_putg:
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+	ld	c, l
+	ld	hl, #-9
+	add	hl, sp
+	ld	sp, hl
+	ld	l, c
+	ld	c, a
+	ld	b, l
+;hello.c:56: if (ch < 32 || ch > 126) ch = 32;
+	ld	a, 4 (ix)
+	sub	a, #0x20
+	jr	C, 00101$
+	ld	a, #0x7e
+	sub	a, 4 (ix)
+	jr	NC, 00102$
+00101$:
+	ld	4 (ix), #0x20
+00102$:
+;hello.c:57: g = font + (unsigned)(ch - 32) * 5;
+	ld	a, 4 (ix)
+	ld	d, #0x00
+	add	a, #0xe0
+	ld	e, a
+	ld	a, d
+	adc	a, #0xff
+	ld	d, a
+	ld	l, e
+	ld	h, d
+	add	hl, hl
+	add	hl, hl
+	add	hl, de
+	ld	de, #_font
+	add	hl, de
+	ex	(sp), hl
+;hello.c:58: p = GBUF + (unsigned)r * 72 + (c >> 1);
+	ld	e, b
+	ld	d, #0x00
+	ld	l, e
+	ld	h, d
+	add	hl, hl
+	add	hl, hl
+	add	hl, hl
+	add	hl, de
+	add	hl, hl
+	add	hl, hl
+	add	hl, hl
+	ld	de, #0x9340
+	add	hl, de
+	ld	a, c
+	srl	a
+	add	a, l
+	ld	-3 (ix), a
+	ld	a, #0x00
+	adc	a, h
+	ld	-2 (ix), a
+;hello.c:59: for (i = 0; i < 6; i++) {
+	ld	a, c
+	and	a, #0x01
+	ld	-7 (ix), a
+	ld	-6 (ix), #0x00
+	ld	-1 (ix), #0x00
+00110$:
+;hello.c:60: n = i < 5 ? (U8)(g[i] << 1) : 0;
+	ld	a, -1 (ix)
+	sub	a, #0x05
+	jr	NC, 00114$
+	ld	a, -9 (ix)
+	add	a, -1 (ix)
+	ld	c, a
+	ld	a, -8 (ix)
+	adc	a, #0x00
+	ld	b, a
+	ld	a, (bc)
+	add	a, a
+	ld	-5 (ix), a
+	ld	-4 (ix), #0x00
+	jr	00115$
+00114$:
+	xor	a, a
+	ld	-5 (ix), a
+	ld	-4 (ix), a
+00115$:
+	ld	c, -5 (ix)
+;hello.c:61: if (inv) n ^= 15;
+	ld	a, 5 (ix)
+	or	a, a
+	jr	Z, 00105$
+	ld	a, c
+	xor	a, #0x0f
+	ld	c, a
+00105$:
+;hello.c:62: if (c & 1) *p = (*p & 0xF0) | n; else *p = (*p & 0x0F) | (U8)(n << 4);
+	ld	l, -3 (ix)
+	ld	h, -2 (ix)
+	ld	b, (hl)
+	ld	a, -6 (ix)
+	or	a, -7 (ix)
+	jr	Z, 00107$
+	ld	a, b
+	and	a, #0xf0
+	or	a, c
+	ld	l, -3 (ix)
+	ld	h, -2 (ix)
+	ld	(hl), a
+	jr	00108$
+00107$:
+	ld	a, b
+	and	a, #0x0f
+	ld	e, a
+	ld	a, c
+	add	a, a
+	add	a, a
+	add	a, a
+	add	a, a
+	or	a, e
+	ld	l, -3 (ix)
+	ld	h, -2 (ix)
+	ld	(hl), a
+00108$:
+;hello.c:63: p += 12;
+	ld	a, -3 (ix)
+	add	a, #0x0c
+	ld	-3 (ix), a
+	jr	NC, 00142$
+	inc	-2 (ix)
+00142$:
+;hello.c:59: for (i = 0; i < 6; i++) {
+	inc	-1 (ix)
+	ld	a, -1 (ix)
+	sub	a, #0x06
+	jr	C, 00110$
+;hello.c:65: }
+	ld	sp, ix
+	pop	ix
+	pop	hl
+	pop	af
+	jp	(hl)
+;hello.c:68: static void puts_(U8 c, U8 r, const char *s, U8 inv){ while (*s && c < LW) putg(c++, r, *s++, inv); }
+;	---------------------------------
+; Function puts_
+; ---------------------------------
+_puts_:
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+	dec	sp
+	ld	c, a
+	ld	b, l
+	ld	e, 4 (ix)
+	ld	d, 5 (ix)
+00102$:
+	ld	a, (de)
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	l, a
+	or	a, a
+	jr	Z, 00105$
+	ld	a, c
+	sub	a, #0x18
+	jr	NC, 00105$
+	ld	a, l
+	inc	de
+	ld	-1 (ix), c
+	inc	c
+	push	bc
+	push	de
+	ld	h, 6 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	push	hl
+	inc	sp
+	push	af
+	inc	sp
+	ld	l, b
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	a, -1 (ix)
+	call	_putg
+	pop	de
+	pop	bc
+	jr	00102$
+00105$:
+	inc	sp
+	pop	ix
+	pop	hl
+	pop	af
+	inc	sp
+	jp	(hl)
+;hello.c:69: static void num(U8 c, U8 r, U8 v){ putg(c,r,'0'+v/100,0); putg(c+1,r,'0'+(v/10)%10,0); putg(c+2,r,'0'+v%10,0); }
+;	---------------------------------
+; Function num
+; ---------------------------------
+_num:
+	push	ix
+	ld	ix,#0
+	add	ix,sp
+	push	af
+	ld	c, a
+	ld	b, l
+	ld	a, 4 (ix)
+	ld	-2 (ix), a
+	ld	-1 (ix), #0x00
+	push	bc
+	ld	de, #0x0064
+	ld	l, -2 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	h, -1 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	call	__divsint
+	pop	bc
+	ld	a, e
+	add	a, #0x30
+	push	bc
+	ld	h, #0x00
+;	spillPairReg hl
+;	spillPairReg hl
+	push	hl
+	inc	sp
+	push	af
+	inc	sp
+	ld	l, b
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	a, c
+	call	_putg
+	ld	de, #0x000a
+	ld	l, -2 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	h, -1 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	call	__divsint
+	ex	de, hl
+	ld	de, #0x000a
+	call	__modsint
+	pop	bc
+	ld	a, e
+	add	a, #0x30
+	ld	e, c
+	inc	e
+	push	bc
+	ld	h, #0x00
+;	spillPairReg hl
+;	spillPairReg hl
+	push	hl
+	inc	sp
+	push	af
+	inc	sp
+	ld	l, b
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	a, e
+	call	_putg
+	ld	de, #0x000a
+	ld	l, -2 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	h, -1 (ix)
+;	spillPairReg hl
+;	spillPairReg hl
+	call	__modsint
+	pop	bc
+	ld	a, e
+	add	a, #0x30
+	inc	c
+	inc	c
+	ld	h, #0x00
+;	spillPairReg hl
+;	spillPairReg hl
+	push	hl
+	inc	sp
+	push	af
+	inc	sp
+	ld	l, b
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	a, c
+	call	_putg
+	pop	af
+	pop	ix
+	pop	hl
+	inc	sp
+	jp	(hl)
+;hello.c:70: void main(void){
+;	---------------------------------
+; Function main
+; ---------------------------------
+_main::
+;hello.c:71: U8 k=0;
+	ld	b, #0x00
+;hello.c:72: do { memset_(); puts_(0,0,"HELLO TI-83+ WORKS",0); puts_(0,2,"KEY CODE:",0); num(10,2,k); puts_(0,4,"CLEAR QUITS",0); present(); k=key(); } while (k!=K_CLEAR);
+00101$:
+	push	bc
+	call	_memset_
+	xor	a, a
+	push	af
+	inc	sp
+	ld	hl, #___str_0
+	push	hl
+;	spillPairReg hl
+;	spillPairReg hl
+	xor	a, a
+	ld	l, a
+	call	_puts_
+	xor	a, a
+	push	af
+	inc	sp
+	ld	hl, #___str_1
+	push	hl
+	ld	l, #0x02
+;	spillPairReg hl
+;	spillPairReg hl
+	xor	a, a
+	call	_puts_
+	inc	sp
+	ld	l, #0x02
+;	spillPairReg hl
+;	spillPairReg hl
+	ld	a, #0x0a
+	call	_num
+	xor	a, a
+	push	af
+	inc	sp
+	ld	hl, #___str_2
+	push	hl
+	ld	l, #0x04
+;	spillPairReg hl
+;	spillPairReg hl
+	xor	a, a
+	call	_puts_
+	call	_present
+	call	_key
+	ld	b, a
+	sub	a, #0x0f
+	jr	NZ, 00101$
+;hello.c:73: }
+	ret
+___str_0:
+	.ascii "HELLO TI-83+ WORKS"
+	.db 0x00
+___str_1:
+	.ascii "KEY CODE:"
+	.db 0x00
+___str_2:
+	.ascii "CLEAR QUITS"
+	.db 0x00
+	.area _CODE
+	.area _INITIALIZER
+	.area _CABS (ABS)
